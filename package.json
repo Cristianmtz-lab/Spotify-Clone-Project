@@ -1,0 +1,12 @@
+{
+  "name": "cloneSpotify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "apache 2.0"
+}
