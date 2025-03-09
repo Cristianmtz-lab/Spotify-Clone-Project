@@ -16,6 +16,23 @@ const token = axios.create({
   }
 });
 
+//axios instance for all api request
+const api = axios.create({ baseURL: apiConfig.BASE_URL });
+
+const getData = async (apiUrl, access_token) => {
+  try {
+    const response = await api.get(apiUrl, {
+      headers: {
+        'Authorization': `Bearer ${access_token}`
+      }
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports = {
-  token
+  token,
+  getData
 }
