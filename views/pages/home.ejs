@@ -6,8 +6,11 @@
 <body>
   <article class="page custom-scrollbar" data-page>
     <!-- top app bar -->
-     <%- include('../partials/top_bar', locals.currentProfile)%>
-     <%-console.log(locals.currentProfile)%>
+    <%- include('../partials/top_bar', locals.currentProfile)%>
+     
+    <!-- bottom nav -->
+    <%- include('../partials/bottom_nav', {currentRoute: '/'})%>
+
   </article>
 </body>
 </html>
