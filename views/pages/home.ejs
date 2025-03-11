@@ -11,6 +11,35 @@
     <!-- bottom nav -->
     <%- include('../partials/bottom_nav', {currentRoute: '/'})%>
 
+    <div class="main" data-main>
+
+      <!-- recommended album -->
+      <% if (locals.albumsReleases.items.length) { %>
+        <section class="section new-release">
+
+          <div class="title-wrapper"> 
+            <div class="title-large section-title">New Albums Releases</div>
+          </div>
+
+          <div class="slider" data-slider>
+            <div class="slider-inner">
+              <% locals.albumsReleases.items.forEach(({artists, images, name: title, id, uri}) => {%>
+
+                <% 
+                  const text = artists.map(({name}) => name).join(', ');
+                  const image = images.find(item => item.width === 300);
+                  console.log(images)
+                %>
+
+              <%})%>
+            </div>
+          </div>
+
+        </section>
+      <% } %>
+
+    </div>
+
   </article>
 </body>
 </html>
