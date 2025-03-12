@@ -28,8 +28,16 @@
                 <% 
                   const text = artists.map(({name}) => name).join(', ');
                   const image = images.find(item => item.width === 300);
-                  console.log(images)
                 %>
+
+                <%- include('../partials/card', {
+                  image,
+                  type: 'album',
+                  title,
+                  text,
+                  link: `/album/${id}`,
+                  uri
+                })%>
 
               <%})%>
             </div>

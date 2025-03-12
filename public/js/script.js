@@ -75,3 +75,25 @@ const ripple = function ($rippleElem) {
 
 const $rippleElems = document.querySelectorAll('[data-ripple]');
 $rippleElems?.forEach(item => ripple(item));
+
+// image animation on loading
+window.addEventListener('DOMContentLoaded', function () {
+  const $animatedImages = document.querySelectorAll('[data-image-load-anim]');
+
+  const addAnimation = function () {
+    this.animate({
+      opacity: 1
+    }, { duration: 200, fill: 'forwards' });
+  }
+
+  $animatedImages.forEach($image => {
+    $image.style.opacity = 0;
+
+    if ($image.complete) {
+      addAnimation.call($image);
+    } else {
+      $image.addEventListener('load', addAnimation);
+    }
+  })
+});
+
