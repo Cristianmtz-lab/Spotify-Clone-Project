@@ -1,3 +1,10 @@
+<%
+  // artists with new Releases
+  const {
+    artists: artistsNewReleases
+  } = locals.artistsNewReleases;
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +22,13 @@
 
       <!-- recommended album -->
       <% if (locals.albumsReleases.items.length) { %>
-        <section class="section new-release">
+        <section class="section">
 
           <div class="title-wrapper"> 
             <div class="title-large section-title">New Albums Releases</div>
           </div>
 
-          <div class="slider" data-slider>
+          <div class="slider" >
             <div class="slider-inner">
               <% locals.albumsReleases.items.forEach(({artists, images, name: title, id, uri}) => {%>
 
@@ -45,6 +52,36 @@
 
         </section>
       <% } %>
+
+      <!-- artists with new releases  -->
+        <% if (artistsNewReleases.length) { %>
+          <section class="section">
+
+            <div class="title-wrapper"> 
+              <div class="title-large section-title">Artists for you</div>
+            </div>
+  
+            <div class="slider" >
+              <div class="slider-inner">
+                
+                <% artistsNewReleases.forEach(({name: title, type, images, id, uri}) => { %>
+                  <% const [image] = images || [] %>
+                  <%- include('../partials/card', {
+                    variant: 'artist-card',
+                    title,
+                    image,
+                    type,
+                    text: type,
+                    link: `/artist/${id}`,
+                    uri,
+                  }) %>
+                <% }) %>
+
+              </div>
+            </div>
+  
+          </section>
+        <% } %>
 
     </div>
 

@@ -97,3 +97,13 @@ window.addEventListener('DOMContentLoaded', function () {
   })
 });
 
+// bottom nav item active
+const $bottomNavItems = document.querySelectorAll('[data-bottom-nav-item]');
+const $activeBottomNavItem = document.querySelector('[data-bottom-nav-item].active');
+
+const activeNavItem = function () {
+  $activeBottomNavItem?.classList.remove('active');
+  this.classList.add('active');
+}
+
+$bottomNavItems && addEventOnElems($bottomNavItems, 'click', activeNavItem);
