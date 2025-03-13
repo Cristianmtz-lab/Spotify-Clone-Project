@@ -26,6 +26,39 @@
 
     <div class="main" data-main>
 
+      <!-- tracks played -->
+      <% if (locals.tracksPlayed.length) { %>
+        <section class="section">
+
+          <div class="title-wrapper"> 
+            <h2 class="title-large section-title">Tracks Played</h2>
+          </div>
+
+          <div class="slider" >
+            <div class="slider-inner">
+              <% locals.tracksPlayed.forEach(({artists, album, name: title, id, uri, type}) => {%>
+
+                <% 
+                  const text = artists.map(({name}) => name).join(', ');
+                  const image = album.images.find(item => item.width === 300);
+                %>
+
+                <%- include('../partials/card', {
+                  image,
+                  type: 'track',
+                  title,
+                  text,
+                  link: `/track/${id}`,
+                  uri
+                })%>
+
+              <%})%>
+            </div>
+          </div>
+
+        </section>
+      <% } %>
+
       <!-- recommended album -->
       <% if (albumsReleasesItems.length) { %>
         <section class="section">
@@ -67,34 +100,34 @@
       <% } %>
 
       <!-- artists with new releases  -->
-        <% if (artistsNewReleases.length) { %>
-          <section class="section">
+      <% if (artistsNewReleases.length) { %>
+        <section class="section">
 
-            <div class="title-wrapper"> 
-              <h2 class="title-large section-title">Artists for you</h2>
-            </div>
-  
-            <div class="slider" >
-              <div class="slider-inner">
-                
-                <% artistsNewReleases.forEach(({name: title, type, images, id, uri}) => { %>
-                  <% const [image] = images || [] %>
-                  <%- include('../partials/card', {
-                    variant: 'artist-card',
-                    title,
-                    image,
-                    type,
-                    text: type,
-                    link: `/artist/${id}`,
-                    uri,
-                  }) %>
-                <% }) %>
+          <div class="title-wrapper"> 
+            <h2 class="title-large section-title">Artists for you</h2>
+          </div>
 
-              </div>
+          <div class="slider" >
+            <div class="slider-inner">
+              
+              <% artistsNewReleases.forEach(({name: title, type, images, id, uri}) => { %>
+                <% const [image] = images || [] %>
+                <%- include('../partials/card', {
+                  variant: 'artist-card',
+                  title,
+                  image,
+                  type,
+                  text: type,
+                  link: `/artist/${id}`,
+                  uri,
+                }) %>
+              <% }) %>
+
             </div>
-  
-          </section>
-        <% } %>
+          </div>
+
+        </section>
+      <% } %>
 
     </div>
 

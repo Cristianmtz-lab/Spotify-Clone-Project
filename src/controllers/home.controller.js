@@ -6,6 +6,7 @@ const userApi = require('../api/user.api');
 const playerApi = require('../api/player.api');
 const AlbumsApi = require('../api/albumsReleases.api');
 const artistApi = require('../api/artistsNewReleases.api');
+const tracksApi = require('../api/track.api');
 
 const home = async (req, res) => {
 
@@ -20,18 +21,20 @@ const home = async (req, res) => {
   const uniqueArtistIds = [... new Set(artistIdEntries.flat(1))].join(',');
   const artistsNewReleases = await artistApi.getSeveralDetail(req, uniqueArtistIds);
 
-  // featured playlists 
-
   // recently played
   const recentlyPlayed = await playerApi.getRecentlyPlayed(req);
-  const recentlyPlayedTracks = recentlyPlayed.items.map(({ track }) => track);
+  const recentlyPlayedIds = recentlyPlayed.items.map(({ track }) => track.id);
+  const uniqueTracksIds = [... new Set(recentlyPlayedIds)].join(',');
+  const tracksPlayed = await tracksApi.getSeveralTracks(req, uniqueTracksIds);
 
-  console.log(recentlyPlayed);
+  console.log(tracksPlayed)
+
 
   res.render('./pages/home', {
     currentProfile,
     albumsReleases,
-    artistsNewReleases
+    artistsNewReleases,
+    tracksPlayed
   });
 }
 
