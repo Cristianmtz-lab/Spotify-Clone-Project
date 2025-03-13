@@ -15,6 +15,14 @@ const generateRandomString = function (length) {
   return randomString;
 }
 
+const getUrlQuery = (params, limit = apiConfig.DEFAULT_LIMIT) => {
+  const { page = 1 } = params;
+  const offset = (limit * page) - limit;
+
+  return { limit, offset, page }
+}
+
 module.exports = {
-  generateRandomString
+  generateRandomString,
+  getUrlQuery
 }

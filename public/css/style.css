@@ -489,3 +489,12 @@ components
   color: var(--on-surface);
   opacity:  0.8;
 }
+
+.artist-card .card-banner {
+  padding-block-start: var(--space-3);
+  padding-inline: var(--space-3);
+}
+
+.artist-card .img-holder { border-radius: var(--radius-full);}
+
+.artist-card .card-text { text-transform: capitalize;}
