@@ -14,7 +14,7 @@
 
     <%-include('./play_btn', {
       variant: 'filled',
-      dataAttr: `data-uri="${locals.uri}"`
+      dataAttr: `data-uri="${locals.uri ?? locals.href}"`
     })%>
   </div>
 

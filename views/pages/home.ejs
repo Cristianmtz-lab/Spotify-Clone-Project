@@ -9,6 +9,12 @@
     items: albumsReleasesItems,
     next: nextPageAlbumsReleases
   } = locals.albumsReleases;
+
+  // category playlist
+  const {
+    items: categoriesPlaylist,
+    next: nextPageCategoryPlaylist
+  } = locals.categoriesData;
 %>
 
 <!DOCTYPE html>
@@ -77,12 +83,10 @@
           <div class="slider" >
             <div class="slider-inner">
               <% locals.albumsReleases.items.forEach(({artists, images, name: title, id, uri}) => {%>
-
                 <% 
                   const text = artists.map(({name}) => name).join(', ');
                   const image = images.find(item => item.width === 300);
                 %>
-
                 <%- include('../partials/card', {
                   image,
                   type: 'album',
@@ -91,7 +95,6 @@
                   link: `/album/${id}`,
                   uri
                 })%>
-
               <%})%>
             </div>
           </div>
@@ -123,6 +126,41 @@
                 }) %>
               <% }) %>
 
+            </div>
+          </div>
+
+        </section>
+      <% } %>
+
+      <!-- categories playlist -->
+      <% if (categoriesPlaylist.length) { %>
+        <section class="section">
+
+          <div class="title-wrapper"> 
+            <h2 class="title-large section-title">Categories Selected</h2>
+
+            <% if (nextPageCategoryPlaylist !== null) { %>
+              <a href="/categories" class="btn btn-link" data-ripple>
+                <span class="label-large">See all</span>
+                <div class="state-layer"></div>
+              </a>
+            <% } %>
+          </div>
+
+          <div class="slider" >
+            <div class="slider-inner">
+              <% categoriesPlaylist.forEach(({artists, icons, name: title, id,  href}) => {%>
+                <% 
+                  const [image] = icons
+                %>
+                <%- include('../partials/card', {
+                  image,
+                  type: 'categories',
+                  title,
+                  link: `/browse/categories/${id}`,
+                  href
+                })%>
+              <%})%>
             </div>
           </div>
 
