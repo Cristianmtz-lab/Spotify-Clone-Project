@@ -140,7 +140,7 @@
             <h2 class="title-large section-title">Categories Selected</h2>
 
             <% if (nextPageCategoryPlaylist !== null) { %>
-              <a href="/categories" class="btn btn-link" data-ripple>
+              <a href="/browse/categories" class="btn btn-link" data-ripple>
                 <span class="label-large">See all</span>
                 <div class="state-layer"></div>
               </a>
@@ -168,6 +168,12 @@
       <% } %>
 
     </div>
+
+    <!-- footer -->
+    <%- include('../layouts/footer')%>
+
+    <!-- player sm -->
+    <%- include('../partials/player_sm')%>
 
   </article>
 </body>
