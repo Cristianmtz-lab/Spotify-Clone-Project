@@ -686,3 +686,30 @@ components
   --shadow-spread: 10px;
 }
 
+.player-range-wrapper .player-range {order: -1;}
+
+.player-control-btns {
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.player-control-btns .icon {font-variation-settings: 'FILL' 1;}
+
+.player-volume {display:  none;}
+
+.player-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--black);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--tr-duration-short-2) var(--tr-easing-linear);
+  z-index: 4;
+}
+
+.player-overlay.active {
+  opacity: 0.5;
+  visibility: visible;
+}
